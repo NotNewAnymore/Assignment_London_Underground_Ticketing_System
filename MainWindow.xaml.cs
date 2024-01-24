@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿// Henry Fleischer
+
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,12 +19,12 @@ namespace Assignment_London_Underground_Ticketing_System
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Replace "WillsList" with your Custom List name in 2 places.
+        // Replace "HenrysList" with your Custom List name in 2 places.
         // 1. Replace here
         // Example YourList<Ride> Riders
-        public WillsList<Rider> Riders;
+        public HenrysList<Rider> Riders;
 
-        int numberOfRiders = 10; // Changes this to something higher than 100 to check your list is working
+        int numberOfRiders = 5; // Changes this to something higher than 100 to check your list is working
 
         public MainWindow()
         {
@@ -38,7 +40,7 @@ namespace Assignment_London_Underground_Ticketing_System
         {
             var searchStation = cmbSearchStation.SelectedIndex;
 
-            // Enter code here to show all riders who started there ride from the selected station
+            // Enter code here to show all riders who started their ride from the selected station
 
             // lvRiders.ItemsSource = YourReturnedResults;
         } // OnSearchStation
@@ -59,7 +61,7 @@ namespace Assignment_London_Underground_Ticketing_System
         {
             // 2. And here
             // Ex Riders = new YourList<Rider>();
-            Riders = new WillsList<Rider>();
+            Riders = new HenrysList<Rider>();
             Random rnd = new Random();
             HashSet<int> usedNumbers = new HashSet<int>();
 
@@ -79,7 +81,7 @@ namespace Assignment_London_Underground_Ticketing_System
 
                 Riders.Add(new Rider(uniqueNumber, stationOn, stationOff));
             }
-
+            Riders.AddAtIndex(new Rider(6,(Station)rnd.Next(Enum.GetNames(typeof(Station)).Length),(Station)rnd.Next(Enum.GetNames(typeof(Station)).Length)),2);
         } // Initialize Riders
 
     
