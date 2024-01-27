@@ -24,7 +24,7 @@ namespace Assignment_London_Underground_Ticketing_System
         // Example YourList<Ride> Riders
         public HenrysList<Rider> Riders;
 
-        int numberOfRiders = 5; // Changes this to something higher than 100 to check your list is working
+        int numberOfRiders = 5000; // Changes this to something higher than 100 to check your list is working
 
         public MainWindow()
         {
@@ -40,17 +40,33 @@ namespace Assignment_London_Underground_Ticketing_System
         {
             var searchStation = cmbSearchStation.SelectedIndex;
 
-            // Enter code here to show all riders who started their ride from the selected station
+			// Enter code here to show all riders who started their ride from the selected station
+			foreach (Rider item in Riders)
+			{
+				if (item != null && (int)item.StationOn == cmbSearchStation.SelectedIndex)
+				{
+					lvFilteredRiders.Items.Add(item);
 
-            // lvRiders.ItemsSource = YourReturnedResults;
-        } // OnSearchStation
+				}
+
+			}
+			// lvRiders.ItemsSource = YourReturnedResults;
+		} // OnSearchStation
 
         private void OnShowActive(object sender, RoutedEventArgs e)
         {
-            // Enter code here to display all riders currently riding the underground
+			// Enter code here to display all riders currently riding the underground
+			foreach (Rider item in Riders)
+			{
+				if (item != null && item.StationOn == Station.Active)
+                {
+                    lvFilteredRiders.Items.Add(item);
 
-            // lvRiders.ItemsSource = YourReturnedResults;
-        } // OnShowActive
+				}
+
+			}
+			// lvRiders.ItemsSource = YourReturnedResults;
+		} // OnShowActive
 
         private void OnClearList(object sender, RoutedEventArgs e)
         {
@@ -82,6 +98,8 @@ namespace Assignment_London_Underground_Ticketing_System
                 Riders.Add(new Rider(uniqueNumber, stationOn, stationOff));
             }
             Riders.AddAtIndex(new Rider(6,(Station)rnd.Next(Enum.GetNames(typeof(Station)).Length),(Station)rnd.Next(Enum.GetNames(typeof(Station)).Length)),2);
+            Riders.RemoveAtIndex(2);  //At least it does not throw an error no matter what I do.
+
         } // Initialize Riders
 
     
